@@ -25,7 +25,7 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'thoughtbot-shoulda'
+  gem 'shoulda'
   gem 'factory_girl'
   gem 'test-unit'
 end

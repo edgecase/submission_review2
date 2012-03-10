@@ -12,10 +12,10 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
         get :index
       end
 
-      should_respond_with :success
+      should respond_with :success
       should_render_template 'index'
       should_assign_to :proposals
-      
+
       should "assign state_filter to 'confirmed" do
         state_filter= assigns['state_filter']
         assert state_filter
@@ -23,16 +23,16 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
         assert state_filter.confirmed
       end
     end
-    
+
     context "with filter" do
       setup do
         @in_filter = []
         @in_filter << Proposal.generate(:state=>'submitted') << Proposal.generate(:state=>'reserved')
         Proposal.generate(:state=>'confirmed')
-        
+
         get :index, :state_filter=>{:submitted=>'true', :reserved=>'true'}
       end
-      
+
       should "assign values on state filter" do
         state_filter= assigns['state_filter']
         assert state_filter
@@ -40,24 +40,24 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
         assert state_filter.reserved
         assert !state_filter.confirmed
       end
-      
+
       should "return only filtered values" do
         assert_equal @in_filter.sort_by(&:id), assigns['proposals'].sort_by(&:id)
       end
-      
+
     end
-    
+
     context "filtering all states out" do
       setup do
         3.times{Proposal.generate}
-        
+
         get :index, :state_filter=>{:reserved=>'false'}
       end
-      
+
       should "find no proposals" do
         assert_equal [], assigns['proposals']
       end
-      
+
     end
 
 
