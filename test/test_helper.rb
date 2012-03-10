@@ -1,13 +1,23 @@
 ENV["RAILS_ENV"] = "test"
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'rails/test_help'
 
-class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  fixtures :all
+require 'flexmock/test_unit'
 
-  # Add more helper methods to be used by all tests here...
+class String
+  alias each each_char
+end
+
+class ActiveSupport::TestCase
+
+  # self.use_transactional_fixtures = true
+  # fixtures :all
+  def logon(twitter = 'mavis', opts={:admin=>false})
+    session[:reviewer] = Reviewer.generate(:twitter=>twitter, :admin=>opts[:admin])
+  end
+  
+  def logoff
+    session.delete :reviewer
+  end
+  
 end

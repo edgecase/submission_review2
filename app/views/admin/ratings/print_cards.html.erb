@@ -1,0 +1,24 @@
+<div class="card-page">
+	<% @proposals.each_with_index do |proposal, i|%>
+		<div class="card">
+			<div class="card-head">
+				<div class="ranking"><%= i+ 1%>.</div>
+				<div class="title"><%=proposal.title %></div>
+				<div class="average-score"><%= proposal.average_score.to_f.round(2) %></div>
+				<div class="speakers"><%= comma_separated_speakers(proposal)%></div>
+			</div>
+			<div class="ratings">
+				<% proposal.ratings.each do |rating| %>
+					<div class="card_rating">
+						<div class="reviewer"><%=rating.reviewer.twitter%></div>
+						<div class="score"><%= rating.score %>&nbsp;<%= rating_stars(rating)%></div>
+						<div class="comment"><%= rating.comment%></div>
+					</div>
+				<% end%>
+			</div>
+		</div
+		<% if (i + 1) % 6 == 0 %>
+			<div class="page-break"></div> 
+		<% end %>
+	<% end %>
+</div>

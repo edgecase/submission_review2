@@ -6,6 +6,10 @@ gem 'rails', '3.2.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'twitter_oauth'
+gem 'flexmock'
+gem 'will_paginate'
+gem 'aasm'
 
 
 # Gems used only for assets and not required
@@ -18,6 +22,12 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :test, :development do
+  gem 'thoughtbot-shoulda'
+  gem 'factory_girl'
+  gem 'test-unit'
 end
 
 gem 'jquery-rails'

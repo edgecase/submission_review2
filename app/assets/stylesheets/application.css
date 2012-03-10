@@ -1,13 +1,268 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
-*/
+body{
+	font-family: verdana,sans-serif;
+	width: 960px;
+	background-color:  #ffffff;
+	color: #333;
+}
+
+#flash.notice{
+	color:green;
+	font-size: 110%;
+}
+
+.clearfix{zoom : 1;}
+.clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+/* End hide from IE-mac */
+
+
+/* structure */
+#hd{margin: 20px; text-align: left; font-size: 93%;}
+#bd{margin: 20px; text-align: left; font-size: 93%;}
+div.pagination{margin-top: 20px;}
+div.proposal{width: 500px; float: left;}
+div.rating, div#presenter-proposals{width: 300px; float: right; border: 1px dotted #ccc; padding: 10px;}
+div#presenter-proposals{margin-top: 50px}
+table.other-presenter-proposals{margin: 20px auto; width: 90%;}
+table.other-presenter-proposals td{padding: 10px 0;}
+table.other-presenter-proposals caption {font-weight: bolder}
+div.rating div.comment{border: 1px solid #E2E2E2;}
+div.proposal .abstract, div.proposal .description{margin: 0 0 20px 0;}
+ul.speakers{margin: 0 0 20px 0;}
+#sorting{margin: 0 0 20px 0;}
+
+div.rating .comment, #rating_comment{
+	width: 270px;
+}
+
+/* text */
+h1{font-size: 138.5%; margin-bottom: 20px;}
+h2{font-size: 123.1%; margin-bottom: 5px;}
+h3{font-weight: bold;}
+
+.abstract p, .description p{margin: 0 0 8px 0;}
+.rating p{margin-bottom: 5px;}
+
+/* lists */
+.abstract ul li, .description ul li{margin: 0 0 0 10px;}
+
+/* links */
+a{color: #C01F25;}
+a#logout{float: right;}
+a.sortable{margin-right: 5px;}
+a.active{color: #333; }
+
+/* tables */
+
+tr.proposal td{
+	border: solid thin lavender;
+	margin: 0;
+	padding: 5px;
+}
+
+tr.proposal td.score{
+	width: 60px;
+}
+
+table#ratings .rating{
+	width: 65px;
+	overflow: hide;
+}
+
+table#ratings .title{
+	width: 250px;
+}
+
+table#summary{width: 690px;}
+th{padding: 0 0 5px 5px; background-color: #f6f6f6;}
+
+
+/* cards */
+.card-page{
+	width: 1100px;
+	position: absolute;
+}
+.card-page .card{
+	display:block;
+	width: 500px;
+	margin: 7px;
+	border: solid thin black;
+	padding: 5px;
+	float: left;
+	font-size: 8px;
+	height: 460px;
+	overflow: hidden;
+}
+.card-head{
+	margin-bottom: 40px;
+}
+
+.card .title, .card .ranking{
+	font-size: 12px;	
+}
+
+.card .ranking{
+	width: 20px;
+	padding-right: 5px;
+	text-align: right;
+	
+}
+.card .title{
+	width: 440px;
+}
+
+.card .average-score{
+	font-size: 14px;
+	width: 30px;
+}
+
+.card .card-head div{
+	float: left;
+	font-weight: bold;
+}
+
+.card .ratings{
+	clear: both;
+}
+
+.card .reviewer{
+	font-weight: bold;
+	float: left;
+	
+}
+
+.card .score{
+	float:right;
+}
+
+.card .comment{
+	clear: both;
+	padding: 5px;
+}
+
+.card .card_rating {
+	margin: 5px 0;
+	border: 1px solid paleGoldenRod;
+}
+
+.page-break	{ display:block; page-break-before:always; clear:both;}
+
+/* mail */
+
+#mail label{
+	width: 100px;
+	float: left;
+	text-align: right;
+	padding-right: 15px;
+}
+
+#mail_subject, #mail_body{
+	margin: 20px 20px;
+}
+
+#email_subject, #email_body{
+	width: 500px;
+}
+
+#email_body{
+	height: 35em;
+}
+
+#mail_sig, #email_submit, #mail_preamble{
+	margin-left: 170px;
+}
+
+#mail_preamble{
+  padding-right: 250px;
+}
+
+#mail_sig{
+	margin-bottom: 20px;
+}
+
+#admin_proposals{
+;
+}
+/* admin proposals*/
+#admin_proposals .proposal{
+	width: 1000px;
+	clear: both;
+	padding: 5px 0;
+	border: solid 1px paleGoldenRod
+}
+
+#admin_proposals .select{
+  width: 10px;
+  float :left;
+  margin-right: 10px;
+}
+
+#admin_proposals .title{
+	width: 500px;
+	float: left;
+	margin-right: 20px;
+}
+
+#admin_proposals .presenters{
+	width: 200px;
+	float: left;
+}
+
+#admin_proposals .events{
+	float: right;
+}
+#admin_proposals .state{
+	width: 100px;
+	float: left;
+}
+
+#admin_proposals #filter{
+	width: 960px;
+	padding-bottom: 50px;
+}
+
+#admin_proposals #filter input{
+	margin-right: 40px;
+	float: left;
+}
+
+#admin_proposals #filter label{
+	float: left;
+}
+#
+/* forms */
+#rating form{margin: 20px 0; border-top: 1px dotted #ccc; padding-top: 10px;}
+#rating form .row{margin: 0 0 5px 0;}
+#rating form label.hori{display: block;}
+#rating form input[type='submit']{border: none; margin-top: 5px; padding: 4px; background-color: #C01F25; color: #fff;}
+
+ul#proposals_to_mail{
+  float: right;
+  max-width: 240px;
+  margin: 20px;
+}
+
+ul#proposals_to_mail li{
+  list-style: disc;
+}
+
+ul#proposals_to_mail em{
+  font-weight: bolder;
+}
+
+
+#mail{
+  float: left;
+}
+
+#proposal_votes .vote{
+  width: 60px;
+  text-align: center;
+}
+
+
+table#proposal_votes tr:nth-of-type(11n) td{
+  border-bottom: 1px solid black;
+  padding-bottom: 1em;
+}

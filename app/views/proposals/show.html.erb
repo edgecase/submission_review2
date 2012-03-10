@@ -1,0 +1,84 @@
+<script type="text/javascript" charset="utf-8">
+
+  window.onload=function(){
+    <% if @rating -%>
+      $('#form_rating').hide();
+    <% else -%>
+      $('#form_rating').show();
+    <% end -%>
+  }
+</script>
+
+<% content_for :header do -%>
+  <%= link_to "All proposals", proposals_path %>
+<% end -%>
+
+<div class="clearfix">
+  <% div_for @proposal do %>
+    <h2 class="title"><%= @proposal.title %></h2>
+  
+    <ul class='speakers'>
+    	<% @proposal.presenters.each do |presenter| %>
+    		<li><%= h presenter.name %></li>
+    	<% end %>
+    </ul>
+  
+    <div class='abstract'>
+    	<h3>Abstract</h3>
+    	<%= in_paragraphs @proposal.abstract %>
+    </div>
+    <div class='description'>
+    	<h3>Description</h3>
+    	<%= in_paragraphs @proposal.description %>
+    </div>
+  
+  <% end %>
+
+  <div id="rating" class="rating">
+    <% if @rating -%>
+      <p>You rated this proposal as: <%= rating(@proposal)%></p>
+		<div class="comment"><%= in_paragraphs @rating.comment %></div>
+    
+      <%= link_to_function('Change?', "$('#form_rating').show();") %>
+    <% else -%>
+      <p>Please rate this proposal</p>
+    <% end -%>
+    
+    <% form_for :rating, :url=>{:action=>:rate}, :html=>{:method=>:put, :id => "form_rating", :style => 'display: none'} do |f| %>
+    	<div class="row">
+    	  <%= f.label 'score'%>
+    	  <%= select_tag "rating[score]", options_for_select([1,2,3,4,5], (@rating.score if @rating))%>
+    	</div>
+    	<div class="row">
+    		<%= f.label 'comment', 'Comment', :class => 'hori' %>
+    		<%= f.text_area :comment, :rows => 4 %>
+    	</div>
+    	<%= f.submit "Rate" %>
+ 
+    <% end -%>
+  </div>
+
+  <div id="presenter-proposals">
+    <% @proposal.presenters.each do |presenter| %>
+      <table class="other-presenter-proposals">
+        <caption><%= h presenter.name %> - proposals</caption>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+          <tbody>
+            <% presenter.proposals.each do |other_proposal|%>
+              <tr>
+                <td><%= link_to h(other_proposal.title), other_proposal %></td>
+                <td><%= rating_stars(other_proposal.reviewer_proposal(reviewer)) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+  </div>
+</div>
+
+

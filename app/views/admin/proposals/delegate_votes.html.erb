@@ -1,0 +1,46 @@
+<h1>
+  Proposal Votes
+</h1>
+
+<table id="proposal_votes" class="tablesorter">
+  <thead>
+    <tr>
+      <th>Proposal</th>
+      <th class="vote">For</th>
+      <th class="vote">Shrug</th>
+      <th class="vote">Against</th>
+      <th class="vote">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proposals.each do |proposal| %>
+      <tr>
+        <td class="title">
+          <%= link_to proposal.title, proposal %>: <%= comma_separated_speakers(proposal) %>
+        </td>
+        <td class="vote">
+          <%= proposal.punters_for %>
+        </td>
+        <td class="vote">
+          <%= proposal.punters_meh %>
+        </td>
+        <td class="vote">
+          <%= proposal.punters_against %>
+        </td>
+        <td class="vote">
+          <%= proposal.punters_score %>
+        </td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+
+<script>
+  $(function(){ 
+    $('#proposal_votes').tablesorter({
+      sortList: [[4,1]] 
+    });
+  } );
+</script>

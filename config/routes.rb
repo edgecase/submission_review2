@@ -1,4 +1,28 @@
 SubmissionReview::Application.routes.draw do
+  match 'reviewer_sessions/callback' => 'reviewer_sessions#callback', :as=>:oauth_callback
+
+  resources :reviewer_sessions, :only=>[:new, :destroy]
+  resources :proposals, :only=>[:index, :show], :member=>{:rate=>:put}
+
+  namespace :admin do |admin|
+    resources :ratings, :only=>[:index] do
+      collection do 
+        get :print_cards
+      end
+    end
+    resources :accepted_mailings, :only=>[:new, :create]
+    resources :proposals, :only=>[:index] do
+      member do
+        put :update_state
+      end
+      collection do
+        get :delegate_votes
+      end
+    end
+  end
+
+  root :to => "proposals#default_route"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -10,7 +34,7 @@ SubmissionReview::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  # Sample resource route ( HTTP verbs to controller actions automatically):
   #   resources :products
 
   # Sample resource route with options:
