@@ -6,7 +6,6 @@ gem 'rails', '3.2.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'twitter_oauth'
-gem 'flexmock'
 gem 'will_paginate'
 gem 'aasm'
 gem 'pg', :require => 'pg'
@@ -24,11 +23,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'test-unit'
 group :test, :development do
+  gem 'flexmock'
   gem 'sqlite3'
   gem 'shoulda'
   gem 'factory_girl_rails'
-  # gem 'test-unit'
   gem 'capistrano'
 end
 
