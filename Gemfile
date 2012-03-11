@@ -9,7 +9,8 @@ gem 'twitter_oauth'
 gem 'flexmock'
 gem 'will_paginate'
 gem 'aasm'
-
+gem 'pg', :require => 'pg'
+gem 'execjs'
 
 # Gems used only for assets and not required
 # in production environments by default.
