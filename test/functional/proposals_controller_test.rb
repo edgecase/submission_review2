@@ -26,7 +26,8 @@ class ProposalsControllerTest < ActionController::TestCase
   test "shows proposal" do
     @proposal.rate(2, "rubbish", session[:reviewer])
     get :show, :id=>@proposal.id
-    assert_select '.title', :text=>'Life of fish'
+    assert_template 'show'
+    assert_select ' .title', :text=>'Life of fish'
     assert_equal 2, assigns['rating'].score
   end
 
@@ -58,24 +59,25 @@ class ProposalsControllerTest < ActionController::TestCase
       session[:sort] = 'rating'
       put :rate, :id=>@proposal.id, :rating=>{:score=>5, :comment=>'Brill!'}
     end
-    should_redirect_to("proposals index sorted by user's choice") { proposals_path(:sort => 'rating' )}
+    should redirect_to("proposals index sorted by user's choice") { proposals_path(:sort => 'rating' )}
   end
 
   private
 
   def create_some_proposals
-    user1 = User.generate(:first_name=>'Sam', :last_name=>'Adams')
-    user2 = User.generate(:first_name=>'Johan', :last_name=>'Bach')
-    @proposal = Proposal.generate(:title=>'Life of fish', :abstract=>'Carpe diem', :description=>'No bicycles involved.') do |prop|
+    user1 = FactoryGirl.create(:user,:first_name=>'Sam', :last_name=>'Adams')
+    user2 = FactoryGirl.create(:user,:first_name=>'Johan', :last_name=>'Bach')
+    @proposal = FactoryGirl.create(:proposal,:title=>'Life of fish', :abstract=>'Carpe diem', :description=>'No bicycles involved.') do |prop|
       prop.presenters << user1 << user2
+      prop
     end
-    Proposal.generate(:title=>'Fish of life') do |prop|
+    FactoryGirl.create(:proposal,:title=>'Fish of life') do |prop|
       prop.presenters << user1
     end
   end
 
   def logon
-    session[:reviewer] = Reviewer.generate(:twitter=>'mavis')
+    session[:reviewer] = FactoryGirl.create(:reviewer,:twitter=>'mavis')
   end
 
   def logoff

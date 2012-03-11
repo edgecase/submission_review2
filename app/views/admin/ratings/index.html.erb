@@ -1,24 +1,24 @@
 <table id="ratings">
-	<thead>
-		<th>&nbsp;</th>
-		<th>&nbsp;</th>
-		<% @reviewers.each do |reviewer|%>
-			<%= content_tag 'th', h(reviewer.twitter[0..3]), :class=>'rating'%>
-		<% end %>
-		<th>Average</th>
-	</thead>
-	<tbody>
-		<% @proposals.each_with_index do |proposal, i| %>
-			<tr class="proposal">
-				<td><%= i + 1 %></td>
-				<%= proposal_td(proposal) %>
-				<% @reviewers.each do |reviewer| %>					
-					<%= td_for proposal, reviewer %>
-					<%= reviewer_comment proposal, reviewer %>
-				<% end%>
-				<td><%= proposal.average_score %></td>
-			</tr>
-		<% end%>
-	</tbody>
-			
+  <thead>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <% @reviewers.each do |reviewer|%>
+      <%= content_tag 'th', h(reviewer.twitter[0..3]), :class=>'rating'%>
+    <% end %>
+    <th>Average</th>
+  </thead>
+  <tbody>
+    <% @proposals.each_with_index do |proposal, i| %>
+      <tr class="proposal">
+        <td><%= i + 1 %></td>
+        <%= proposal_td(proposal) %>
+        <% @reviewers.each do |reviewer| %>
+          <%= td_for proposal, reviewer %>
+          <%= reviewer_comment proposal, reviewer %>
+        <% end%>
+        <td><%= proposal.average_score %></td>
+      </tr>
+    <% end%>
+  </tbody>
+
 </table>	

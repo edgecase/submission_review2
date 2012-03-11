@@ -1,27 +1,18 @@
 <div id="admin_proposals">
-<div id="filter">
-  <% form_tag admin_proposals_path, :method=>:get, :id=>:admin_proposals_form do %>
-		<% Proposal.aasm_states.each do |state|%>
-			<%= label :state_filter, state.name, "#{state.name}:" %>
-            <%= check_box :state_filter, state.name, {:class=>'state_checkbox'}, true, false%>
-		<% end%>
-	<% end %>
-  </div>
-<% form_tag new_admin_accepted_mailing_path, :method=>:get do %>
-  <input id='toggle_all_proposals' type='checkbox'></input>
-  <%= submit_tag 'Email selected proposers' %>
-	<% @proposals.each_with_index do |proposal, i|%>
-		<% div_for proposal do %>
-          <%= render :partial=>proposal%>
-		<% end %>
+  <div id="filter">
+    <% form_tag admin_proposals_path, :method=>:get, :id=>:admin_proposals_form do %>
+      <% Proposal.aasm_states.each do |state|%>
+        <%= label :state_filter, state.name, "#{state.name}:" %>
+        <%= check_box :state_filter, state.name, {:class=>'state_checkbox'}, true, false%>
       <% end%>
     <% end %>
   </div>
+</div>
 
 
-  <script>
-    $('.state_checkbox').change(function(){$('#admin_proposals_form').submit();});
-    $('#toggle_all_proposals').change(function(){
-      $('.select_proposal').attr('checked', $(this).attr('checked'));
-    });
-  </script>
+<script>
+  $('.state_checkbox').change(function(){$('#admin_proposals_form').submit();});
+  $('#toggle_all_proposals').change(function(){
+    $('.select_proposal').attr('checked', $(this).attr('checked'));
+  });
+</script>

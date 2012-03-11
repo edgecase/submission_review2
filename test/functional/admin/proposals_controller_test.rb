@@ -13,8 +13,8 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
       end
 
       should respond_with :success
-      should_render_template 'index'
-      should_assign_to :proposals
+      should render_template 'index'
+      should assign_to :proposals
 
       should "assign state_filter to 'confirmed" do
         state_filter= assigns['state_filter']
@@ -27,8 +27,8 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
     context "with filter" do
       setup do
         @in_filter = []
-        @in_filter << Proposal.generate(:state=>'submitted') << Proposal.generate(:state=>'reserved')
-        Proposal.generate(:state=>'confirmed')
+        @in_filter << FactoryGirl.create(:proposal, :state=>'submitted') << FactoryGirl.create(:proposal, :state=>'reserved')
+        FactoryGirl.create(:proposal, :state=>'confirmed')
 
         get :index, :state_filter=>{:submitted=>'true', :reserved=>'true'}
       end
@@ -49,7 +49,7 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
 
     context "filtering all states out" do
       setup do
-        3.times{Proposal.generate}
+        3.times{FactoryGirl.create(:proposal)}
 
         get :index, :state_filter=>{:reserved=>'false'}
       end
@@ -66,7 +66,7 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
 
   context "update state" do
     setup do
-      @proposal = Proposal.generate(:state=>'submitted')
+      @proposal = FactoryGirl.create(:proposal, :state=>'submitted')
       put :update_state, :id=>@proposal.id, :event=>'accept'
     end
 
@@ -74,7 +74,7 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
       assert_equal 'accepted', @proposal.reload.state
     end
 
-    should_render_template 'proposal'
+    should render_template 'proposal'
 
 
 

@@ -20,11 +20,11 @@ class ReviewerSessionsControllerTest < ActionController::TestCase
   end
 
   test "fail whale page displayed if Twitter goes down during callback" do
-     @oauth_client.should_receive(:authorize).and_raise(OAuth::Unauthorized)
-     @oauth_client.should_receive(:request_token).and_raise(Net::HTTPFatalError.new('', ''))
+    @oauth_client.should_receive(:authorize).and_raise(OAuth::Unauthorized)
+    @oauth_client.should_receive(:request_token).and_raise(Net::HTTPFatalError.new('', ''))
     get :callback, :oath_verifier=>'verification key'
     assert_template 'failwhale'
- end
+  end
 
   test "not authorised, if twitter auth fails" do
     @oauth_client.should_receive(:authorize).and_raise(OAuth::Unauthorized)
@@ -38,7 +38,7 @@ class ReviewerSessionsControllerTest < ActionController::TestCase
 
   test "not authorised if reviewer not configured" do
     @oauth_client.should_receive(:info).and_return('screen_name'=>'rita')
-    Reviewer.generate(:twitter=>'marvin')
+    FactoryGirl.create(:reviewer,:twitter=>'marvin')
     get :callback, :oath_verifier=>'verification key'
     assert_response :success
     assert_template 'reviewer_not_configured'
@@ -46,7 +46,7 @@ class ReviewerSessionsControllerTest < ActionController::TestCase
   end
 
   test "authorised if twitter name is configured" do
-    rita = Reviewer.generate(:twitter=>'rita')
+    rita = FactoryGirl.create(:reviewer,:twitter=>'rita')
 
     get :callback, :oath_verifier=>'verification key'
     assert_equal rita, session[:reviewer]
@@ -59,8 +59,8 @@ class ReviewerSessionsControllerTest < ActionController::TestCase
     assert_template 'new'
     assert_session_and_link_for_oauth
   end
-  
-  
+
+
   test "destroy" do
     logon
     delete :destroy, :id=>session[:reviewer].id

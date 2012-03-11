@@ -26,7 +26,7 @@ end
 
 group :test, :development do
   gem 'shoulda'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'test-unit'
 end
 

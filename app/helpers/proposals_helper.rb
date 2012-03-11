@@ -1,6 +1,6 @@
 module ProposalsHelper
 
-
+  include ERB::Util
   def rating(proposal)
     rating =proposal.reviewer_proposal(session[:reviewer])
     rating_stars rating

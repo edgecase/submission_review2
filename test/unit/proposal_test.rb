@@ -4,8 +4,8 @@ class ProposalsTest < ActiveSupport::TestCase
 
 
   should "rating an unrated proposal" do
-    proposal = Proposal.generate
-    reviewer = Reviewer.generate
+    proposal = FactoryGirl.create(:proposal)
+    reviewer = FactoryGirl.create(:reviewer)
     proposal.rate(4, "pretty good", reviewer)
 
     assert_equal 1, proposal.ratings.count
@@ -15,8 +15,8 @@ class ProposalsTest < ActiveSupport::TestCase
   end
 
   should "rating a proposal already rated by reviewer, updates rating without adding new one" do
-    proposal = Proposal.generate
-    reviewer = Reviewer.generate
+    proposal = FactoryGirl.create(:proposal)
+    reviewer = FactoryGirl.create(:reviewer)
     proposal.rate(4, "pretty good", reviewer)
     proposal.rate(3, "ok", reviewer)
 
@@ -27,9 +27,9 @@ class ProposalsTest < ActiveSupport::TestCase
   end
 
   should "reviewer proposal shows only rating for user" do
-    proposal = Proposal.generate
-    reviewer1 = Reviewer.generate
-    reviewer2 = Reviewer.generate
+    proposal = FactoryGirl.create(:proposal)
+    reviewer1 = FactoryGirl.create(:reviewer)
+    reviewer2 = FactoryGirl.create(:reviewer)
     proposal.rate(4, "super", reviewer1)
     proposal.rate(3, "ok",reviewer2)
 
@@ -40,7 +40,7 @@ class ProposalsTest < ActiveSupport::TestCase
   context "state" do
 
     setup do
-      @proposal = Proposal.generate
+      @proposal = FactoryGirl.create(:proposal)
     end
 
     context "initial" do
@@ -92,8 +92,8 @@ class ProposalsTest < ActiveSupport::TestCase
 
     context "named scopes" do
       setup do
-        @accepted = (1..3).map{Proposal.generate(:state=>'accepted')}
-        @confirmed = (1..3).map{Proposal.generate(:state=>'confirmed')}
+        @accepted = (1..3).map{FactoryGirl.create(:proposal,:state=>'accepted')}
+        @confirmed = (1..3).map{FactoryGirl.create(:proposal,:state=>'confirmed')}
       end
 
       should "return for example only 'accepted' from accepted" do
@@ -110,7 +110,7 @@ class ProposalsTest < ActiveSupport::TestCase
 
   context "delegate votes" do
     setup do
-      @proposal = Proposal.generate
+      @proposal = FactoryGirl.create(:proposal)
       @proposal.proposal_votes.create(:value=>0)
       @proposal.proposal_votes.create(:value=>0)
       @proposal.proposal_votes.create(:value=>0)

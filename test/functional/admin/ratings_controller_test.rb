@@ -27,7 +27,7 @@ class Admin::RatingsControllerTest < ActionController::TestCase
 
   test "puts reviews in the right place" do
     create_reviewers_and_logon
-    proposal = Proposal.generate(:title=>'The Zen of Zen')
+    proposal = FactoryGirl.create(:proposal, :title=>'The Zen of Zen')
 
     proposal.rate(3, "ok", reviewer2)
     proposal.rate(5, "great", reviewer4)
@@ -59,7 +59,7 @@ class Admin::RatingsControllerTest < ActionController::TestCase
   def create_reviewers_and_logon
     logon('1rev', :admin=>true)
     2.upto(5) do |i|
-      Reviewer.generate!(:twitter=>"#{i}rev")
+      FactoryGirl.create(:reviewer, :twitter=>"#{i}rev")
     end
   end
 
@@ -68,7 +68,7 @@ class Admin::RatingsControllerTest < ActionController::TestCase
       Reviewer.find_by_twitter("#{i}rev")
     end
   end
-  
+
   def admin_logon
     logon('mavis', :admin=>true)
   end
