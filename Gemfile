@@ -24,6 +24,7 @@ group :assets do
 end
 
 gem 'test-unit'
+gem 'unicorn'
 group :test, :development do
   gem 'flexmock'
   gem 'sqlite3'
