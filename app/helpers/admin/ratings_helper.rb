@@ -18,7 +18,7 @@ module Admin::RatingsHelper
   def proposal_td(proposal)
     proposal_id = "proposal_title_#{proposal.id}"
     content = content_tag("td", link_to(proposal.title, proposal,:id=>proposal_id), :class=>'title')
-    tip = tooltip(proposal_id, in_paragraphs(proposal.abstract))
+    tip = tooltip(proposal_id, in_paragraphs(proposal.description))
     "#{content}\n#{tip}".html_safe
   end
 

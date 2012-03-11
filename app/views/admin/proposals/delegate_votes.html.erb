@@ -16,7 +16,7 @@
     <% @proposals.each do |proposal| %>
       <tr>
         <td class="title">
-          <%= link_to proposal.title, proposal %>: <%= comma_separated_speakers(proposal) %>
+          <%= link_to proposal.title, proposal %>: <%= proposal.presenter.name %>
         </td>
         <td class="vote">
           <%= proposal.punters_for %>

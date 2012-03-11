@@ -31,12 +31,11 @@ class Proposal < ActiveRecord::Base
     transitions :to => :reserved, :from=>:submitted
   end
 
-  has_many :presentations
-  has_many :presenters, :through => :presentations
+  belongs_to :presenter
   has_many :ratings
 
   def self.in_order_of_popularity
-    self.all(:include=>[:presenters, :ratings]).sort_by(&:average_score).reverse
+    self.all(:include=>[:presenter, :ratings]).sort_by(&:average_score).reverse
   end
 
   def rate(score, comment,  reviewer)

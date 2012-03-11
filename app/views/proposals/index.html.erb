@@ -5,14 +5,14 @@
 <th></th>
 <th>Proposal</th>
 <th>Speakers</th>
-<th>Abstract</th>
+<th>Description</th>
 <th>Score</th>
 <% @proposals.each_with_index do |proposal, i| %>
 <tr class="proposal">
   <td><%= i + 1 %>.</td>
   <td class="title"><%= link_to proposal.title, proposal %></td>
-  <td class="presenters"> <%= comma_separated_speakers(proposal) %>  </td>
-  <td class="abstract"> <%= short(proposal.abstract, 200)%></td>
+  <td class="presenters"> <%= proposal.presenter.name %>  </td>
+  <td class="description"> <%= short(proposal.description, 200)%></td>
   <td class="score"><%= rating(proposal)%></td>
 </tr>
 <% end %>

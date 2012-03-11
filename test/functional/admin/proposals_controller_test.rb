@@ -66,7 +66,7 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
 
   context "update state" do
     setup do
-      @proposal = FactoryGirl.create(:proposal, :state=>'submitted')
+      @proposal = FactoryGirl.create(:proposal, :state=>'submitted', :presenter=>Factory.create(:presenter))
       put :update_state, :id=>@proposal.id, :event=>'accept'
     end
 

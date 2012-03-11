@@ -19,8 +19,7 @@ class ProposalsControllerTest < ActionController::TestCase
     assert_template 'index'
     assert_select 'td.title', :text=>'Life of fish'
     assert_select 'td.title', :text=>'Fish of life'
-    assert_select 'td.presenters', :text=>'Sam Adams'
-    assert_select 'td.presenters', :text=>'Sam Adams, Johan Bach'
+    assert_select 'td.presenters', :text=>'Sam Adams (Sammy)'
   end
 
   test "shows proposal" do
@@ -65,15 +64,10 @@ class ProposalsControllerTest < ActionController::TestCase
   private
 
   def create_some_proposals
-    user1 = FactoryGirl.create(:user,:first_name=>'Sam', :last_name=>'Adams')
-    user2 = FactoryGirl.create(:user,:first_name=>'Johan', :last_name=>'Bach')
-    @proposal = FactoryGirl.create(:proposal,:title=>'Life of fish', :abstract=>'Carpe diem', :description=>'No bicycles involved.') do |prop|
-      prop.presenters << user1 << user2
-      prop
-    end
-    FactoryGirl.create(:proposal,:title=>'Fish of life') do |prop|
-      prop.presenters << user1
-    end
+    presenter = FactoryGirl.create(:presenter,:full_name=>'Sam Adams', :familiar_name=>"Sammy")
+    @proposal = FactoryGirl.create(:proposal,:title=>'Life of fish', 
+                                   :presenter=>presenter, :reviewer_notes=>'Carpe diem', :description=>'No bicycles involved.')
+    FactoryGirl.create(:proposal,:title=>'Fish of life', :presenter=>presenter)
   end
 
   def logon

@@ -18,18 +18,16 @@
     <h2 class="title"><%= @proposal.title %></h2>
 
     <ul class='speakers'>
-      <% @proposal.presenters.each do |presenter| %>
-        <li><%= h presenter.name %></li>
-      <% end %>
+      <li><%= @proposal.presenter.name %></li>
     </ul>
 
-    <div class='abstract'>
-      <h3>Abstract</h3>
-      <%= in_paragraphs @proposal.abstract %>
-    </div>
     <div class='description'>
       <h3>Description</h3>
       <%= in_paragraphs @proposal.description %>
+    </div>
+    <div class='abstract'>
+      <h3>Abstract</h3>
+      <%= in_paragraphs @proposal.reviewer_notes %>
     </div>
 
   <% end %>
@@ -59,9 +57,8 @@
   </div>
 
   <div id="presenter-proposals">
-    <% @proposal.presenters.each do |presenter| %>
       <table class="other-presenter-proposals">
-        <caption><%= h presenter.name %> - proposals</caption>
+        <caption><%= @proposal.presenter.name %> - proposals</caption>
         <thead>
           <tr>
             <th>Title</th>
@@ -69,7 +66,7 @@
           </tr>
         </thead>
         <tbody>
-          <% presenter.proposals.each do |other_proposal|%>
+          <% @proposal.presenter.proposals.each do |other_proposal|%>
             <tr>
               <td><%= link_to h(other_proposal.title), other_proposal %></td>
               <td><%= rating_stars(other_proposal.reviewer_proposal(reviewer)) %></td>
@@ -77,7 +74,6 @@
           <% end %>
         </tbody>
       </table>
-    <% end %>
   </div>
 </div>
 

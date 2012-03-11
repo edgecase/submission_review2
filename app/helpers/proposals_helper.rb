@@ -17,10 +17,6 @@ module ProposalsHelper
     "#{text[0..(length-1)]}..."
   end
 
-  def comma_separated_speakers(proposal)
-    proposal.presenters.map{|sp| h("#{sp.first_name} #{sp.last_name}")} * ", "
-  end
-
   def in_paragraphs(text)
     return "" if text.blank?
     text.split(/$/).map{|line| "<p>#{h(line.strip)}</p>"}.join if text
