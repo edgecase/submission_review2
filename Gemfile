@@ -28,6 +28,7 @@ group :test, :development do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'test-unit'
+  gem 'capistrano'
 end
 
 gem 'jquery-rails'
