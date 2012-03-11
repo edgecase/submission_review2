@@ -5,7 +5,6 @@ gem 'rails', '3.2.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'twitter_oauth'
 gem 'flexmock'
 gem 'will_paginate'
@@ -25,6 +24,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'sqlite3'
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'test-unit'
