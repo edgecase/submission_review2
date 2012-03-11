@@ -1,13 +1,13 @@
 body{
-	font-family: verdana,sans-serif;
-	width: 960px;
-	background-color:  #ffffff;
-	color: #333;
+  font-family: verdana,sans-serif;
+  width: 960px;
+  background-color:  #ffffff;
+  color: #333;
 }
 
 #flash.notice{
-	color:green;
-	font-size: 110%;
+  color:green;
+  font-size: 110%;
 }
 
 .clearfix{zoom : 1;}
@@ -33,7 +33,7 @@ ul.speakers{margin: 0 0 20px 0;}
 #sorting{margin: 0 0 20px 0;}
 
 div.rating .comment, #rating_comment{
-	width: 270px;
+  width: 270px;
 }
 
 /* text */
@@ -56,22 +56,22 @@ a.active{color: #333; }
 /* tables */
 
 tr.proposal td{
-	border: solid thin lavender;
-	margin: 0;
-	padding: 5px;
+  border: solid thin lavender;
+  margin: 0;
+  padding: 5px;
 }
 
 tr.proposal td.score{
-	width: 60px;
+  width: 60px;
 }
 
 table#ratings .rating{
-	width: 65px;
-	overflow: hide;
+  width: 65px;
+  overflow: hide;
 }
 
 table#ratings .title{
-	width: 250px;
+  width: 250px;
 }
 
 table#summary{width: 690px;}
@@ -80,70 +80,70 @@ th{padding: 0 0 5px 5px; background-color: #f6f6f6;}
 
 /* cards */
 .card-page{
-	width: 1100px;
-	position: absolute;
+  width: 1100px;
+  position: absolute;
 }
 .card-page .card{
-	display:block;
-	width: 500px;
-	margin: 7px;
-	border: solid thin black;
-	padding: 5px;
-	float: left;
-	font-size: 8px;
-	height: 460px;
-	overflow: hidden;
+  display:block;
+  width: 500px;
+  margin: 7px;
+  border: solid thin black;
+  padding: 5px;
+  float: left;
+  font-size: 8px;
+  height: 460px;
+  overflow: hidden;
 }
 .card-head{
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .card .title, .card .ranking{
-	font-size: 12px;	
+  font-size: 12px;	
 }
 
 .card .ranking{
-	width: 20px;
-	padding-right: 5px;
-	text-align: right;
-	
+  width: 20px;
+  padding-right: 5px;
+  text-align: right;
+
 }
 .card .title{
-	width: 440px;
+  width: 440px;
 }
 
 .card .average-score{
-	font-size: 14px;
-	width: 30px;
+  font-size: 14px;
+  width: 30px;
 }
 
 .card .card-head div{
-	float: left;
-	font-weight: bold;
+  float: left;
+  font-weight: bold;
 }
 
 .card .ratings{
-	clear: both;
+  clear: both;
 }
 
 .card .reviewer{
-	font-weight: bold;
-	float: left;
-	
+  font-weight: bold;
+  float: left;
+
 }
 
 .card .score{
-	float:right;
+  float:right;
 }
 
 .card .comment{
-	clear: both;
-	padding: 5px;
+  clear: both;
+  padding: 5px;
 }
 
 .card .card_rating {
-	margin: 5px 0;
-	border: 1px solid paleGoldenRod;
+  margin: 5px 0;
+  border: 1px solid paleGoldenRod;
 }
 
 .page-break	{ display:block; page-break-before:always; clear:both;}
@@ -151,26 +151,26 @@ th{padding: 0 0 5px 5px; background-color: #f6f6f6;}
 /* mail */
 
 #mail label{
-	width: 100px;
-	float: left;
-	text-align: right;
-	padding-right: 15px;
+  width: 100px;
+  float: left;
+  text-align: right;
+  padding-right: 15px;
 }
 
 #mail_subject, #mail_body{
-	margin: 20px 20px;
+  margin: 20px 20px;
 }
 
 #email_subject, #email_body{
-	width: 500px;
+  width: 500px;
 }
 
 #email_body{
-	height: 35em;
+  height: 35em;
 }
 
 #mail_sig, #email_submit, #mail_preamble{
-	margin-left: 170px;
+  margin-left: 170px;
 }
 
 #mail_preamble{
@@ -178,18 +178,18 @@ th{padding: 0 0 5px 5px; background-color: #f6f6f6;}
 }
 
 #mail_sig{
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #admin_proposals{
-;
+  ;
 }
 /* admin proposals*/
 #admin_proposals .proposal{
-	width: 1000px;
-	clear: both;
-	padding: 5px 0;
-	border: solid 1px paleGoldenRod
+  width: 1000px;
+  clear: both;
+  padding: 5px 0;
+  border: solid 1px paleGoldenRod
 }
 
 #admin_proposals .select{
@@ -199,36 +199,36 @@ th{padding: 0 0 5px 5px; background-color: #f6f6f6;}
 }
 
 #admin_proposals .title{
-	width: 500px;
-	float: left;
-	margin-right: 20px;
+  width: 500px;
+  float: left;
+  margin-right: 20px;
 }
 
 #admin_proposals .presenters{
-	width: 200px;
-	float: left;
+  width: 200px;
+  float: left;
 }
 
 #admin_proposals .events{
-	float: right;
+  float: right;
 }
 #admin_proposals .state{
-	width: 100px;
-	float: left;
+  width: 100px;
+  float: left;
 }
 
 #admin_proposals #filter{
-	width: 960px;
-	padding-bottom: 50px;
+  width: 960px;
+  padding-bottom: 50px;
 }
 
 #admin_proposals #filter input{
-	margin-right: 40px;
-	float: left;
+  margin-right: 40px;
+  float: left;
 }
 
 #admin_proposals #filter label{
-	float: left;
+  float: left;
 }
 #
 /* forms */
