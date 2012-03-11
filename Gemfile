@@ -28,7 +28,7 @@ group :test, :development do
   gem 'sqlite3'
   gem 'shoulda'
   gem 'factory_girl_rails'
-  gem 'test-unit'
+  # gem 'test-unit'
   gem 'capistrano'
 end
 
