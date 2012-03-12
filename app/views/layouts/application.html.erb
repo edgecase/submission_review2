@@ -3,24 +3,24 @@
   <head>
     <title>Scottish Ruby Conference - Review</title>
     <%= stylesheet_link_tag 'reset-fonts-grids', 'jquery.tooltip', 'application', 'tablesort'%>
-	<%= stylesheet_link_tag 'application', 'print',  :media => "print"%>
-    <%= javascript_include_tag :all %>
+    <%= stylesheet_link_tag 'application', 'print',  :media => "print"%>
+    <%= javascript_include_tag *%w(application jquery jquery.tooltip.min jquery-ui jquery.tablesorter.min)%>
   </head>
   <body>
-	<%= content_tag("p", flash.values.first, :id=>'flash', :class=>flash.keys.first) unless flash.blank?%>
-    
-  	<div id="hd" class="clearfix">
-	  <% if admin? %>
-		<%= link_to "proposals", proposals_path%>
-		<%= link_to "admin proposals", admin_proposals_path%>
-		<%= link_to "ratings", admin_ratings_path%>
-		<%= link_to "cards", print_cards_admin_ratings_path%>
-		<%= link_to "Delegate votes", delegate_votes_admin_proposals_path %>
-	  <% end %>
-  	  <%= logoff_link %>
-  	  <%= yield :header %>
-  	</div>
-  	<div id="bd">
+    <%= content_tag("p", flash.values.first, :id=>'flash', :class=>flash.keys.first) unless flash.blank?%>
+
+    <div id="hd" class="clearfix">
+      <% if admin? %>
+        <%= link_to "proposals", proposals_path%>
+        <%= link_to "admin proposals", admin_proposals_path%>
+        <%= link_to "ratings", admin_ratings_path%>
+        <%= link_to "cards", print_cards_admin_ratings_path%>
+        <%= link_to "Delegate votes", delegate_votes_admin_proposals_path %>
+      <% end %>
+      <%= logoff_link %>
+      <%= yield :header %>
+    </div>
+    <div id="bd">
       <%= yield %>
     </div>
   </body>
