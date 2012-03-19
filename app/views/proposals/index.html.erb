@@ -1,19 +1,64 @@
 <h1>Proposals</h1>
 
-
+<div class="hideshow">
+  Hide rated: <input id="hide-rated" type="checkbox">
+  Hide unrated: <input id="hide-unrated" type="checkbox">
+</div>
 <table id="summary">
-<th></th>
-<th>Proposal</th>
-<th>Speakers</th>
-<th>Description</th>
-<th>Score</th>
-<% @proposals.each_with_index do |proposal, i| %>
-<tr class="proposal">
-  <td><%= i + 1 %>.</td>
-  <td class="title"><%= link_to proposal.title, proposal %></td>
-  <td class="presenters"> <%= proposal.presenter.name %>  </td>
-  <td class="description"> <%= short(proposal.description, 200)%></td>
-  <td class="score"><%= rating(proposal)%></td>
-</tr>
-<% end %>
+  <th></th>
+  <th>Proposal</th>
+  <th>Speakers</th>
+  <th>Description</th>
+  <th>Score</th>
+  <% @proposals.each_with_index do |proposal, i| %>
+    <tr class="<%= proposals_class proposal%>">
+      <td><%= i + 1 %>.</td>
+      <td class="title"><%= link_to proposal.title, proposal %></td>
+      <td class="presenters"> <%= proposal.presenter.name %>  </td>
+      <td class="description"> <%= short(proposal.description, 200)%></td>
+      <td class="score"><%= rating(proposal)%></td>
+    </tr>
+  <% end %>
 </table>
+
+<script>
+  $(
+  function(){
+    var hideShow = function(name){
+      if($.cookie(name) === 'true'){
+        $('#' + name).attr('checked', 'true');
+        } else {
+        $('#' + name).removeAttr('checked');
+    }};
+
+    var changeFunction = function(name){
+      return function(el){
+        if($(el.target).attr('checked')){
+          $.cookie(name, 'true');
+          } else {
+          $.cookie(name, 'false');
+        }
+        hideUnhide();
+      };
+    };
+
+    hideShow("hide-rated");
+    hideShow("hide-unrated");
+
+    $('#hide-rated').change(changeFunction('hide-rated'));
+    $('#hide-unrated').change(changeFunction('hide-unrated'));
+
+    var hideUnhide = function(){
+      if($.cookie('hide-rated') === 'true'){
+        $('.rated').hide();
+        } else {
+        $('.rated').show();
+      }
+      if($.cookie('hide-unrated') === 'true'){
+        $('.unrated').hide();
+        } else {
+        $('.unrated').show();
+      }
+    };
+  })
+</script>

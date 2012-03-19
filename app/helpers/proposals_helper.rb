@@ -22,6 +22,11 @@ module ProposalsHelper
     Kramdown::Document.new(text).to_html.html_safe
   end
 
+  def proposals_class(proposal)
+    rating_class = rating(proposal) ? "rated" : "unrated"
+    "proposal #{rating_class}"
+  end
+
   def sort_proposals_by(text,param)
     css_class = (params[:sort] == param) ? ' active' : ''
     link_to text, proposals_path(:sort => param), :class => "sortable#{css_class}"
