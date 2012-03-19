@@ -19,7 +19,7 @@ module ProposalsHelper
 
   def in_paragraphs(text)
     return "" if text.blank?
-    text.split(/$/).map{|line| "<p>#{h(line.strip)}</p>"}.join if text
+    Kramdown::Document.new(text).to_html.html_safe
   end
 
   def sort_proposals_by(text,param)

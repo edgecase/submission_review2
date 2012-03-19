@@ -231,6 +231,10 @@ th{padding: 0 0 5px 5px; background-color: #f6f6f6;}
   float: left;
 }
 
+em {
+  font-weight: bolder
+}
+
 /* forms */
 #rating form{margin: 20px 0; border-top: 1px dotted #ccc; padding-top: 10px;}
 #rating form .row{margin: 0 0 5px 0;}
