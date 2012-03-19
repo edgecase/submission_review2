@@ -2,7 +2,11 @@ SubmissionReview::Application.routes.draw do
   match 'reviewer_sessions/callback' => 'reviewer_sessions#callback', :as=>:oauth_callback
 
   resources :reviewer_sessions, :only=>[:new, :destroy]
-  resources :proposals, :only=>[:index, :show], :member=>{:rate=>:put}
+  resources :proposals, :only=>[:index, :show] do
+    member do
+      put :rate
+    end
+  end
 
   namespace :admin do |admin|
     resources :ratings, :only=>[:index] do

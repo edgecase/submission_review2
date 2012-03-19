@@ -42,7 +42,7 @@
       <p>Please rate this proposal</p>
     <% end -%>
 
-    <% form_for :rating, :url=>{:action=>:rate}, :html=>{:method=>:put, :id => "form_rating", :style => 'display: none'} do |f| %>
+    <%= form_for :rating, :url=>rate_proposal_path, :html=>{:method=>:put, :id => "form_rating", :style => 'display: none'} do |f| %>
       <div class="row">
         <%= f.label 'score'%>
         <%= select_tag "rating[score]", options_for_select([1,2,3,4,5], (@rating.score if @rating))%>
