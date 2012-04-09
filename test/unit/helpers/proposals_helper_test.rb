@@ -30,10 +30,10 @@ class ProposalsHelperTest < ActionView::TestCase
   end
 
 
-  test "in_paragraphs puts each line in its own escaped html paragraph" do
-    assert_equal "<p>I have met them at close of&gt;day</p><p>Coming with vivid faces</p><p>From counter or desk among grey</p><p>Eighteenth-century houses.</p>",
+  test "in_paragraphs converts to markdown" do
+    assert_equal "<p>I have met them at close of&gt;day</p>\n\n<p>Coming with vivid faces</p>\n\n<p>From counter or desk among grey</p>\n\n<p>Eighteenth-century houses.</p>\n",
       in_paragraphs(
-        "I have met them at close of>day\nComing with vivid faces\nFrom counter or desk among grey\nEighteenth-century houses.")
+        "I have met them at close of>day\n\nComing with vivid faces\n\nFrom counter or desk among grey\n\nEighteenth-century houses.")
   end
 
   test "in paragraphs returns empty if nil" do

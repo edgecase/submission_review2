@@ -18,8 +18,13 @@ module ProposalsHelper
   end
 
   def in_paragraphs(text)
+    markdown(text).html_safe
+  end
+
+  def markdown(text)
     return "" if text.blank?
-    Kramdown::Document.new(text).to_html.html_safe
+    Kramdown::Document.new(text).to_html
+
   end
 
   def proposals_class(proposal)
