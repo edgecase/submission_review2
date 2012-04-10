@@ -19,6 +19,7 @@
 
     <ul class='speakers'>
       <li><%= @proposal.presenter.name %></li>
+      <li><%= link_to @proposal.presenter.twitter, "http://twitter.com/#{@proposal.presenter.twitter}" %></li>
     </ul>
 
     <div class='description'>
@@ -28,6 +29,10 @@
     <div class='abstract'>
       <h3>Abstract</h3>
       <%= in_paragraphs @proposal.reviewer_notes %>
+    </div>
+    <div class='Bio'>
+      <h3>Bio</h3>
+      <%= in_paragraphs @proposal.presenter.bio %>
     </div>
 
   <% end %>
