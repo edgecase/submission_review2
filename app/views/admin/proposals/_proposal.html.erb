@@ -1,10 +1,10 @@
 <div class='select'><%= check_box_tag 'selected_proposals[]', proposal.id, false, :class=>'select_proposal' %></div>
-<div class='title'><%= h proposal.title%></div>
+<div class='title'><%=  proposal.title%></div>
 <div class='presenters'><%= proposal.presenter.name %></div>
-<div class='state'><%= h proposal.state%></div>
+<div class='state'><%=  proposal.state%></div>
 <div class='events'>
-	<% proposal.aasm_events_for_current_state.each do |event| %>
+  <% proposal.aasm_events_for_current_state.each do |event| %>
     <%= button_to event, :update=>dom_id(proposal), :url=>update_state_admin_proposal_path(proposal), :remote=>true, :method=>:put, :with=>"'event=#{event}'"%>
-	<% end%>
+  <% end%>
 </div>
 

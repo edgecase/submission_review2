@@ -1,6 +1,6 @@
 <div id="admin_proposals">
   <div id="filter">
-    <% form_tag admin_proposals_path, :method=>:get, :id=>:admin_proposals_form do %>
+    <%= form_tag admin_proposals_path, :method=>:get, :id=>:admin_proposals_form do %>
       <% Proposal.aasm_states.each do |state|%>
         <%= label :state_filter, state.name, "#{state.name}:" %>
         <%= check_box :state_filter, state.name, {:class=>'state_checkbox'}, true, false%>
@@ -8,6 +8,13 @@
     <% end %>
   </div>
 </div>
+
+
+<% @proposals.each_with_index do |proposal, i|%>
+  <%= div_for proposal do %>
+    <%= render :partial=>proposal%>
+  <% end %>
+<% end%>
 
 
 <script>

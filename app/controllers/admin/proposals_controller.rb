@@ -15,7 +15,7 @@ class Admin::ProposalsController < Admin::AdminController
       return "1=2" if states.blank?
       "state in (#{states})"
     end
-    private 
+    private
 
     def initialize_from_args(args)
       STATES.each do |state| 
@@ -28,6 +28,7 @@ class Admin::ProposalsController < Admin::AdminController
 
   def index
     @state_filter = StateFilter.new(params[:state_filter])
+    # raise @state_filter.condition.inspect
     @proposals = Proposal.all(:include=>:presenter, :conditions=>@state_filter.condition).sort_by(&:average_score).reverse
   end
 
