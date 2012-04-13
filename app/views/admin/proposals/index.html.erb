@@ -10,11 +10,13 @@
 </div>
 
 
-<% @proposals.each_with_index do |proposal, i|%>
-  <%= div_for proposal do %>
-    <%= render :partial=>proposal%>
-  <% end %>
-<% end%>
+<div id="admin_proposal_list">
+  <% @proposals.each_with_index do |proposal, i|%>
+    <%= div_for proposal do %>
+      <%= render :partial=>proposal%>
+    <% end %>
+  <% end%>
+</div>
 
 
 <script>

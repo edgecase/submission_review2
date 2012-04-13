@@ -152,7 +152,7 @@ th{padding: 0 0 5px 5px; background-color: #f6f6f6;}
   clear:both;
   background: pink;
   margin-bottom: 90px;
- }
+}
 
 @media print
 {
@@ -284,4 +284,42 @@ ul#proposals_to_mail em{
 table#proposal_votes tr:nth-of-type(11n) td{
   border-bottom: 1px solid black;
   padding-bottom: 1em;
+}
+
+#admin_proposal_list {
+  width: 800px;
+  .proposal {
+    width: 100%;
+    margin: 0.5em 0;
+    border: dotted 1px;
+    .details {
+      float: left;
+      div {
+        margin: .20em;
+      }
+      .select, .presenters{
+        float: left;
+      }
+      .presenters {
+        font-weight: bold;
+      }
+
+      .title {
+        clear: both;
+      }
+      .state {
+        font-style: italic;
+        font-weight: bolder;
+        color: #808080;
+        margin: .5em;
+      }
+    }
+    .events {
+      float: right;
+        input {
+          width: 5em;
+          margin: 1em;
+        }
+    }
+  }
 }
