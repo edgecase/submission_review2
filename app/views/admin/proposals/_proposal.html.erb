@@ -4,7 +4,7 @@
 <div class='state'><%=  proposal.state%></div>
 <div class='events'>
   <% proposal.aasm_events_for_current_state.each do |event| %>
-    <%= button_to event, :update=>dom_id(proposal), :url=>update_state_admin_proposal_path(proposal), :remote=>true, :method=>:put, :with=>"'event=#{event}'"%>
+    <%= button_to event, update_state_admin_proposal_path(proposal,{:event=>event}),  :method=>:put, :remote=>true%>
   <% end%>
 </div>
 

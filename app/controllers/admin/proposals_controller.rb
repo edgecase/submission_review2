@@ -28,16 +28,17 @@ class Admin::ProposalsController < Admin::AdminController
 
   def index
     @state_filter = StateFilter.new(params[:state_filter])
-    # raise @state_filter.condition.inspect
     @proposals = Proposal.all(:include=>:presenter, :conditions=>@state_filter.condition).sort_by(&:average_score).reverse
   end
 
 
   def update_state
-    proposal = Proposal.find(params[:id], :include=>:presenter)
-    proposal.send(params[:event])
-    proposal.save!
-    render :partial=>proposal
+    @proposal = Proposal.find(params[:id], :include=>:presenter)
+    @proposal.send(params[:event])
+    @proposal.save!
+    respond_to do |fmt|
+      fmt.js
+    end
   end
 
 

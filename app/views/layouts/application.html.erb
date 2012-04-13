@@ -4,7 +4,8 @@
     <title>Scottish Ruby Conference - Review</title>
     <%= stylesheet_link_tag 'reset-fonts-grids', 'jquery.tooltip', 'application', 'tablesort'%>
     <%= stylesheet_link_tag 'application', 'print',  :media => "print"%>
-    <%= javascript_include_tag *%w(application jquery jquery.tooltip.min jquery-ui jquery.tablesorter.min jquery.cookie)%>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tag %>
   </head>
   <body>
     <%= content_tag("p", flash.values.first, :id=>'flash', :class=>flash.keys.first) unless flash.blank?%>
