@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Admin::ProposalsControllerTest < ActionController::TestCase
 
-  def setup 
+  def setup
     logon('arnold', :admin=>true)
   end
 

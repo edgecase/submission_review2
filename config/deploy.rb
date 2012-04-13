@@ -13,9 +13,11 @@ default_run_options[:pty] = true
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "submissionreview2.scottishrubyconference.com"
-role :app, "submissionreview2.scottishrubyconference.com"
-role :db, "submissionreview2.scottishrubyconference.com", :primary=>true
+host="109.107.37.124"
+
+role :web, host
+role :app, host
+role :db, host
 
 default_environment["PATH"]         = "/home/ubuntu/.rvm/gems/ruby-1.9.3-p0/bin:/home/ubuntu/.rvm/gems/ruby-1.9.3-p0@global/bin:/home/ubuntu/.rvm/rubies/ruby-1.9.3-p0/bin:/home/ubuntu/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 default_environment["GEM_HOME"]     = "/home/ubuntu/.rvm/gems/ruby-1.9.3-p0"
