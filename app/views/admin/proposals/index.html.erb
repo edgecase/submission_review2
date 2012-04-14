@@ -13,7 +13,7 @@
 <div id="email">
   <input id="subject" type="text">
   <textarea id="body" type="text"></textarea>
-  <%= button_to_function "Send to selected", "sendEmailToSelected()" %>
+  <%= button_to_function "Send to selected", "sendEmailToSelected()"  %>
 </div>
 <script>
   var sendEmailToSelected;
@@ -21,6 +21,13 @@
     sendEmailToSelected = function(){
       var proposal_ids = $.makeArray($('.select_proposal:checked')
         .map(function(){return parseInt($(this).val());}));
+      if (proposal_ids.length < 1){
+        alert("You didn't select anything, fool!");
+        return;
+      }
+      if (!window.confirm("Are you really sure you want to email these people? This is your last chance to walk away.")){
+        return;
+      }
       var subject = $('#subject').val();
       var body = $('#body').val();
       $.ajax({
