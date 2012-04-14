@@ -12,6 +12,7 @@ FactoryGirl.define do
     %w(title reviewer_notes description).each do |attr|
       sequence(attr){|n| "#{attr}#{n}"}
     end
+    presenter
   end
 
   factory :rating do |f|

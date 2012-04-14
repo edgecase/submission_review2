@@ -67,17 +67,34 @@ class Admin::ProposalsControllerTest < ActionController::TestCase
   context "update state" do
     setup do
       @proposal = FactoryGirl.create(:proposal, :state=>'submitted', :presenter=>Factory.create(:presenter))
-      put :update_state, :id=>@proposal.id, :event=>'accept'
+      put :update_state, :id=>@proposal.id, :event=>'accept', :format=>'js'
     end
 
     should "update the proposal state" do
       assert_equal 'accepted', @proposal.reload.state
     end
 
-    should render_template 'proposal'
+    should render_template('update_state')
 
 
 
+  end
+
+
+  context :email_presenters do
+    setup do
+      @proposals = [Factory(:proposal), Factory(:proposal)]
+    end
+    should "email all the presenters" do
+      @proposals.each do |proposal|
+        email = flexmock('email')
+        flexmock(PresenterMailer).should_receive(:email_about_proposal).with(proposal, "Hello", "How are you?").and_return(email).once
+        email.should_receive(:deliver).once
+      end
+
+      post :email_presenters, :subject=>'Hello', :body=>'How are you?',
+        :proposal_ids=>@proposals.map(&:id)
+    end
   end
 
 end

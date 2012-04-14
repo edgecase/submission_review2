@@ -31,6 +31,13 @@ class Admin::ProposalsController < Admin::AdminController
     @proposals = Proposal.all(:include=>:presenter, :conditions=>@state_filter.condition).sort_by(&:average_score).reverse
   end
 
+  def email_presenters
+    params[:proposal_ids].each do |id|
+      proposal = Proposal.find(id)
+      PresenterMailer.email_about_proposal(proposal, params[:subject], params[:body]).deliver
+    end
+  end
+
 
   def update_state
     @proposal = Proposal.find(params[:id], :include=>:presenter)

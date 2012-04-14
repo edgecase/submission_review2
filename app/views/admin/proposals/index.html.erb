@@ -9,7 +9,38 @@
   </div>
 </div>
 
+<h2><%= link_to_function "Email", "$('#email').toggle('blind');" %></h2>
+<div id="email">
+  <input id="subject" type="text">
+  <textarea id="body" type="text"></textarea>
+  <%= button_to_function "Send to selected", "sendEmailToSelected()" %>
+</div>
+<script>
+  var sendEmailToSelected;
+  $(function(){
+    sendEmailToSelected = function(){
+      var proposal_ids = $.makeArray($('.select_proposal:checked')
+        .map(function(){return parseInt($(this).val());}));
+      var subject = $('#subject').val();
+      var body = $('#body').val();
+      $.ajax({
+        type: 'post',
+        data: {subject: subject, body: body, proposal_ids:proposal_ids},
+        headers: {
+          'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+        },
+        complete: function(request){},
+        url: "<%= email_presenters_admin_proposals_path %>"
+      });
+    }
+  }
+  );
+</script>
 
+<p>
+  All:
+  <input id="toggle_all_proposals" type="checkbox">
+</p>
 <div id="admin_proposal_list">
   <% @proposals.each_with_index do |proposal, i|%>
     <%= div_for proposal do %>
@@ -22,6 +53,6 @@
 <script>
   $('.state_checkbox').change(function(){$('#admin_proposals_form').submit();});
   $('#toggle_all_proposals').change(function(){
-    $('.select_proposal').attr('checked', $(this).attr('checked'));
+    $('.select_proposal').prop('checked', $(this).prop('checked'));
   });
 </script>

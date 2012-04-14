@@ -20,6 +20,7 @@ SubmissionReview::Application.routes.draw do
       end
       collection do
         get :delegate_votes
+        post :email_presenters
       end
     end
   end
