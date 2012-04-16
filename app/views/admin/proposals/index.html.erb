@@ -44,6 +44,7 @@
   );
 </script>
 
+<p id="proposal-count"><%= pluralize(@proposals.count, "proposal") %></p>
 <p>
   All:
   <input id="toggle_all_proposals" type="checkbox">
