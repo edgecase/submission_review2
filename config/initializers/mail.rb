@@ -3,9 +3,9 @@ if Rails.env == "production"
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => 'conference@scottishrubyconference.com',
+    :user_name      => 'admin@scotlandjs.com',
     :password       => 'is-oas-jeb-yac',
-    :domain         => 'scottishrubyconference.com'
+    :domain         => 'scotlandjs.com'
   }
   ActionMailer::Base.delivery_method = :smtp
 end

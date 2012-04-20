@@ -1,8 +1,8 @@
 class PresenterMailer < ActionMailer::Base
-  default from: "conference@scottishrubyconference.com"
+  default from: "admin@scotlandjs.com"
   def email_about_proposal(proposal, subject, body)
     presenter = proposal.presenter
-    mail(:to => presenter.email, 
+    mail(:to => presenter.email,
          :subject=>substitute(proposal, subject),
          :body=>substitute(proposal, body))
   end
